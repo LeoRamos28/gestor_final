@@ -1,0 +1,28 @@
+CREATE TABLE Usuario ( 
+  id_usuario     INT AUTO_INCREMENT PRIMARY KEY,
+  nombre_usuario VARCHAR(25),
+  email          VARCHAR(50) UNIQUE,
+  password_hash  VARCHAR(255),
+  creado_en      DATETIME DEFAULT CURRENT_TIMESTAMP,
+  gastos         DECIMAL(10,2)
+);
+
+CREATE TABLE Categoria (
+  id_categoria     INT,
+  nombre_categoria VARCHAR(25),
+  gastos           VARCHAR(25),
+  PRIMARY KEY (id_categoria)
+);
+
+CREATE TABLE Gasto (
+  id_gasto     INT,
+  monto        Decimal(10,2),
+  fecha        DateTime,
+  id_usuario   Int,
+  id_categoria Int , 
+  PRIMARY KEY (id_gasto),
+  FOREIGN KEY (id_usuario) REFERENCES Usuario (id_usuario),
+  FOREIGN KEY (id_categoria) REFERENCES Categoria(id_categoria)
+)
+
+
